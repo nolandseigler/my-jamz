@@ -2,7 +2,7 @@ import React from 'react';
 import './Playlist.css';
 import TrackList from '../TrackList/TrackList';
 
-class PlayList extends React.Component {
+class Playlist extends React.Component {
 
     render() {
       return (
@@ -15,4 +15,4 @@ class PlayList extends React.Component {
     }
 }
 
-export default PlayList;
+export default Playlist;
