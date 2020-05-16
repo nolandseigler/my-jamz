@@ -1,8 +1,8 @@
 import API_KEYS from '../keys';
 
 let accessToken;
-const clientId = API_KEYS.SPOTIFY.CLIENT_ID;
-const redirectURI = 'http://localhost:3000';
+const CLIENT_ID = API_KEYS.SPOTIFY.CLIENT_ID;
+const REDIRECT_URI = 'http://localhost:3000';
 const Spotify = {
     getAccessToken() {
         if(accessToken) {
@@ -21,6 +21,9 @@ const Spotify = {
             window.setTimeout(() => accessToken = '', expiresIn * 1000);
             window.history.pushState('Access Token', null, '/');
             return accessToken;
+        } else {
+            const accessURL = `https://accounts.spotify.com/authorize?client_id=${CLIENT_ID}&response_type=token&scope=playlist-modify-public&redirect_uri=${REDIRECT_URI}`;
+            window.location = accessURL;
         }
     }
 };
