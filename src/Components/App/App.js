@@ -3,13 +3,15 @@ import logo from './logo.svg';
 import './App.css';
 import SearchBar from '../SearchBar/SearchBar';
 import SearchResults from '../SearchResults/SearchResults;';
-import PlayList from '../Playlist/Playlist';
+import Playlist from '../Playlist/Playlist';
 
 class App extends React.Component {
 
   constructor(props) {
       super(props);
       this.addTrack = this.addTrack.bind(this);
+      this.removeTrack = this.removeTrack.bind(this);
+      this.updatePlaylistName = this.removeTrack.bind(this);
       this.state = {
           searchResults: [],
           playlistName: '',
@@ -26,6 +28,16 @@ class App extends React.Component {
       }
   }
 
+  removeTrack(track) {
+      let currentPlaylist = this.playlistTracks;
+      currentPlaylist = currentPlaylist.filter(currentTrack => currentTrack.id !== track.id);
+      this.setState({ playlistTracks: currentPlaylist });
+  }
+
+  updatePlaylistName(name) {
+      this.setState({ playlistName: name });
+  }
+
   render() {
     return (
         <div>
@@ -34,7 +46,7 @@ class App extends React.Component {
             <SearchBar />
             <div className="App-playlist">
               <SearchResults onAdd={this.addTrack} searchResults={this.state.searchResults} />
-              <PlayList playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks} />
+              <Playlist onRemove={this.removeTrack} playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks} />
             </div>
           </div>
         </div>

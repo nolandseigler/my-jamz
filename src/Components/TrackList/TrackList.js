@@ -9,6 +9,8 @@ class TrackList extends React.Component {
             <div className="TrackList">
                 {this.props.tracks.map(track => {
                     return <Track
+                        isRemoval={this.props.isRemoval}
+                        onRemove={this.props.onRemove}
                         onAdd={this.props.onAdd}
                         track={track}
                         key={track.id} />
