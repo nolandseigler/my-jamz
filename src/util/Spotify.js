@@ -1,7 +1,7 @@
 import API_KEYS from '../keys';
 
 const CLIENT_ID = API_KEYS.SPOTIFY.CLIENT_ID;
-const REDIRECT_URI = 'http://localhost:3000';
+const REDIRECT_URI = 'http://my-jamz.s3-website-us-east-1.amazonaws.com';
 let accessToken;
 const Spotify = {
     getAccessToken() {
