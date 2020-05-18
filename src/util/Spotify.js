@@ -35,7 +35,6 @@ const Spotify = {
         })
             .then(response => response.json())
             .then(jsonResponse => {
-                console.log('In search.');
                 if(!jsonResponse.tracks) {
                     return [];
                 } else {
