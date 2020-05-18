@@ -1,8 +1,8 @@
 import API_KEYS from '../keys';
 
-let accessToken;
 const CLIENT_ID = API_KEYS.SPOTIFY.CLIENT_ID;
 const REDIRECT_URI = 'http://localhost:3000';
+let accessToken;
 const Spotify = {
     getAccessToken() {
         if(accessToken) {
@@ -35,6 +35,7 @@ const Spotify = {
         })
             .then(response => response.json())
             .then(jsonResponse => {
+                console.log('In search.');
                 if(!jsonResponse.tracks) {
                     return [];
                 } else {
