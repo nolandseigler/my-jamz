@@ -16,22 +16,23 @@ class App extends React.Component {
       this.updatePlaylistName = this.removeTrack.bind(this);
       this.state = {
           searchResults: [],
-          playlistName: '',
+          playlistName: 'New Playlist',
           playlistTracks: []
       }
   }
 
   addTrack(track) {
       //check to see if the track is in playlist by track.id
-      let currentPlaylist = this.playlistTracks;
-      if (!currentPlaylist.find(savedTrack => savedTrack.id === track.id)) {
-          currentPlaylist.push(track);
-          this.setState({ playlistTracks: currentPlaylist  })
+      let currentPlaylist = this.state.playlistTracks;
+      if (currentPlaylist.find(savedTrack => savedTrack.id === track.id)) {
+          return;
       }
+      currentPlaylist.push(track);
+      this.setState({ playlistTracks: currentPlaylist  })
   }
 
   removeTrack(track) {
-      let currentPlaylist = this.playlistTracks;
+      let currentPlaylist = this.state.playlistTracks;
       currentPlaylist = currentPlaylist.filter(currentTrack => currentTrack.id !== track.id);
       this.setState({ playlistTracks: currentPlaylist });
   }
@@ -43,8 +44,8 @@ class App extends React.Component {
               this.setState({
                   playlistName: 'New Playlist',
                   playlistTracks: []
-              })
-          })
+              });
+          });
   }
 
   search(term) {
@@ -59,7 +60,7 @@ class App extends React.Component {
   render() {
     return (
         <div>
-          <h1>Ja<span className="highlight">mmm</span>ing</h1>
+          <h1>My<span className="highlight">Jamz</span></h1>
           <div className="App">
             <SearchBar onSearch={this.search} />
             <div className="App-playlist">

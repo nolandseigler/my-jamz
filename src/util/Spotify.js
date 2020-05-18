@@ -41,7 +41,7 @@ const Spotify = {
                     return jsonResponse.tracks.items.map(track => ({
                        id: track.id,
                        name: track.name,
-                       artist: track.artist[0].name,
+                       artist: track.artists[0].name,
                        album: track.album.name,
                        uri: track.uri
                     }));
@@ -49,7 +49,7 @@ const Spotify = {
             })
     },
     savePlaylist(name, trackURIs) {
-        if(!name || !trackURIs) {
+        if(!name || !trackURIs.length) {
             return;
         } else {
             const accessToken = Spotify.getAccessToken();
@@ -60,7 +60,7 @@ const Spotify = {
                 .then(response => response.json())
                 .then(jsonResponse => {
                     userId = jsonResponse.id;
-                    return fetch(`https://api.spotify/com/v1/users/${userId}/playlists`, {
+                    return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
                         headers: headers,
                         method: 'POST',
                         body: JSON.stringify({ name: name })
@@ -72,9 +72,9 @@ const Spotify = {
                                 headers: headers,
                                 method: 'POST',
                                 body: JSON.stringify({ uris: trackURIs})
-                            });
-                        })
-                })
+                            })
+                        });
+                });
         }
     }
 };
